@@ -32,12 +32,13 @@ body {
     font-size: 1.5rem;
 }
 
-.clearKey, .output {
-    grid-column: 1/5;
-    width: 100%;
+.clearKey {
+    grid-column: 1/4;
 }
 
 .output {
+    grid-column: 1/5;
+    width: 100%;
     text-align: end;
 }
 
