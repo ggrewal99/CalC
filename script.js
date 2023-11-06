@@ -15,11 +15,13 @@ document.addEventListener("DOMContentLoaded", () => {
     // If the number in the output box is a calculation,
     // the next number input will not append to it but replace it
     let isCalculatedNumber = false;
-    let calculated = false;
 
     valueKeys.forEach((valueKey) => {
         valueKey.addEventListener("click", (e) => {
             const value = e.target.textContent;
+            if (lastInput === "=") {
+                clearKey.click();
+            }
             lastInput = value;
 
             if (value === "." && decimal) {
@@ -49,7 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // console.log("Prev num:", prevNum);
         // console.log("Current num:", result);
 
-        if (!isNaN(parseInt(lastInput))) {
+        if (!isNaN(parseFloat(lastInput))) {
             result = calculatedValue();
         } else {
             result = prevNum;
@@ -60,14 +62,19 @@ document.addEventListener("DOMContentLoaded", () => {
         isCalculatedNumber = true;
         prevNum = result;
         lastInput = calculateKey.textContent;
-        calculated = true;
     });
 
     operationKeys.forEach((operationKey) => {
         operationKey.addEventListener("click", (e) => {
             const operation = e.target.textContent;
 
-            if (isNaN(parseInt(lastInput))) {
+            if (operation === "+/-") {
+                result *= -1;
+                output.textContent = result;
+                return;
+            }
+
+            if (isNaN(parseFloat(lastInput))) {
                 operator = operation;
                 result = "";
                 lastInput = operation;
@@ -76,11 +83,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
             if (prevNum !== "0") {
                 prevNum = calculatedValue();
-                calculated = true;
                 output.textContent = prevNum;
             } else {
-                prevNum = result;
+                prevNum = 0;
+                prevNum = calculatedValue();
+                output.textContent = prevNum;
             }
+
             // Change to new operator once prev calc is complete
             // with old operator
             operator = operation;
@@ -105,16 +114,18 @@ document.addEventListener("DOMContentLoaded", () => {
         console.log("Prev num:", prevNum);
         console.log("Current num:", result);
         if (operator === "x") {
-            return parseInt(prevNum) * parseInt(result);
+            return parseFloat(prevNum) * parseFloat(result);
         } else if (operator === "-") {
-            return parseInt(prevNum) - parseInt(result);
+            return parseFloat(prevNum) - parseFloat(result);
         } else if (operator === "+") {
-            return parseInt(prevNum) + parseInt(result);
+            return parseFloat(prevNum) + parseFloat(result);
         } else if (operator === "/") {
             if (result === "0") {
                 return "Error";
             }
-            return parseInt(prevNum) / parseInt(result);
+            return parseFloat(prevNum) / parseFloat(result);
         }
+
+        return parseFloat(prevNum) + parseFloat(result);
     };
 });
