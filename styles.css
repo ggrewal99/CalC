@@ -106,7 +106,7 @@ body, button {
 
 .output {
     width: 100%;
-    overflow: scroll;
+    overflow: auto;
 }
 
 button {
