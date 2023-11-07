@@ -1,0 +1,19 @@
+@media screen and (max-width: 1000px) {
+    .main-body {
+        width: 80vw;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    html {
+        font-size: 22px;
+    }
+
+    .main-body {
+        height: 80%;
+    }
+
+    .calculator {
+        padding: 0.3rem;
+    }
+}

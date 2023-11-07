@@ -1,4 +1,14 @@
 document.addEventListener("DOMContentLoaded", () => {
+    const themeIcon = document.querySelector("#theme-icon");
+
+    themeIcon.addEventListener("click", () => {
+        document.querySelector("body").classList.toggle("theme-2");
+        const buttons = document.querySelectorAll("button");
+        buttons.forEach((button) => {
+            button.classList.toggle("theme-2");
+        });
+    });
+
     const valueKeys = document.querySelectorAll(".valueKey");
     const output = document.querySelector(".output");
     const clearKey = document.querySelector(".clearKey");

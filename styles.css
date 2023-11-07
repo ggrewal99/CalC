@@ -2,12 +2,31 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    /* Disable double tap zoom on mobile devices */
+    touch-action: manipulation; 
 }
 
 :root {
     --font-color: #fff;
-    ---bg-color: #3c3b3b;
-    ---output-bg-color: #b4b4b4;
+    --primary-color: rgb(131, 58, 180);
+    --gradient-start: rgba(131, 58, 180, 1);
+    --gradient-end: rgba(252, 176, 69, 1);
+}
+
+.theme-1 {
+    --font-color: #000;
+    --primary-color: rgb(0, 0, 0);
+    --gradient-start: rgba(0, 0, 0, 1);
+    --gradient-end: rgba(167, 41, 41, 1);
+
+}
+
+.theme-2 {
+    --font-color: #87CEEB;
+    --primary-color: rgb(6,19,42);
+    --gradient-start: rgba(6,19,42,1);
+    --gradient-end: #606060;
+
 }
 
 body {
@@ -17,17 +36,47 @@ body {
     justify-content: center;
     align-items: center;
     font-family: 'Poppins', sans-serif;
-    background: rgb(131,58,180);
-    background: linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(255,0,0,1) 50%, rgba(252,176,69,1) 100%);
+    background: var(--primary-color);
+    background: linear-gradient(
+        0deg,
+        var(--gradient-start) 0%,
+        var(--gradient-end) 100%
+    );
+    overflow: hidden;
+
+    position: relative;
+}
+
+#theme-icon {
+    position: absolute;
+    top: 5%;
+    left: 5%;
+    height: max-content;
+    padding: 1rem;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#title {
+    position: relative;
+}
+
+#letter-c {
+    position: absolute;
+    transform: translateY(-0.5rem);
 }
 
 body, button {
-    color: var(--font-color)
+    color: var(--font-color);
 }
 
 .main-body {
-    width: 70vw;
-    height: 80%;
+    width: 60vw;
+    height: 70%;
+
+    transform: translateY(-7%);
 }
 
 #title {
@@ -39,7 +88,6 @@ body, button {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(5, 1fr);
-    gap: 1rem;
     padding: 1rem;
     justify-content: center;
     align-items: center;
@@ -56,6 +104,11 @@ body, button {
     font-size: 1.5rem;
 }
 
+.output {
+    width: 100%;
+    overflow: scroll;
+}
+
 button {
     border-radius: 10px;
     background: transparent;
@@ -69,6 +122,11 @@ button:hover {
     backdrop-filter: blur( 6px );
     -webkit-backdrop-filter: blur( 6px );
     border-radius: 10px;
+}
+
+button:active {
+    transform: scale(0.8);
+    transition: all 0.3s;
 }
 
 .clearKey {
