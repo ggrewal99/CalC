@@ -6,7 +6,7 @@ This is a simple and elegant calculator web app built using HTML, CSS, and JavaS
 ![calc_dark](https://github.com/ggrewal99/CalC/assets/101481803/aa8ad180-0c4a-4842-bcaf-67d3b570f0b4)
 
 ## Link
-https://bejewelled-cranachan-5de3c4.netlify.app/
+https://themed-calc-app.netlify.app/
 
 ## Author
 Guruvindersingh Grewal
